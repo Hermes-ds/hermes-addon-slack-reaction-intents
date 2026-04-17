@@ -24,7 +24,7 @@ Homepage = "https://github.com/Hermes-ds/hermes-addon-slack-reaction-intents"
 Repository = "https://github.com/Hermes-ds/hermes-addon-slack-reaction-intents"
 
 [project.entry-points."hermes_agent.plugins"]
-slack-reaction-intents = "slack_reaction_intents.plugin:register"
+slack-reaction-intents = "slack_reaction_intents.plugin"
 
 [tool.setuptools]
 packages = ["slack_reaction_intents"]
