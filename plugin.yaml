@@ -1,0 +1,6 @@
+name: slack-reaction-intents
+version: 0.1.0
+description: Slack reaction-to-intent add-on for Hermes gateway
+provides_hooks:
+  - slack_reaction_added
+  - gateway_pre_handle_event

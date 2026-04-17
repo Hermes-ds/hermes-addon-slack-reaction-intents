@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hermes-addon-slack-reaction-intents"
+version = "0.1.0"
+description = "Hermes addon for Slack reaction-driven follow-up intents"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Daysun Labs" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-asyncio>=0.23",
+]
+
+[project.entry-points."hermes_agent.plugins"]
+slack-reaction-intents = "slack_reaction_intents.plugin:register"
+
+[tool.setuptools]
+packages = ["slack_reaction_intents"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
