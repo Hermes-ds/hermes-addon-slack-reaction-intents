@@ -16,7 +16,7 @@ Generated synthetic events are marked with:
 
 ## Current status
 
-This repo layout is prepared to be split into its own repository.
+This repo is intended to live separately from Hermes core.
 It assumes Hermes core already contains the required extension seam:
 - `slack_reaction_added` async hook
 - `gateway_pre_handle_event` hook
@@ -31,6 +31,7 @@ hermes-addon-slack-reaction-intents/
 ├── plugin.yaml
 ├── README.md
 ├── LICENSE
+├── MANIFEST.in
 ├── .gitignore
 ├── slack_reaction_intents/
 │   ├── __init__.py
@@ -50,7 +51,7 @@ Example shared-runtime install:
 
 ```bash
 source /opt/hermes-agent/venv-shared/bin/activate
-pip install git+https://github.com/<org>/hermes-addon-slack-reaction-intents.git
+pip install git+https://github.com/Hermes-ds/hermes-addon-slack-reaction-intents.git
 hermes plugins enable slack-reaction-intents
 systemctl restart hermes-ds-admin.service hermes-ds-default.service
 ```
@@ -64,7 +65,7 @@ Notes:
 
 ```bash
 source /opt/hermes-agent/venv-shared/bin/activate
-pip install --upgrade git+https://github.com/<org>/hermes-addon-slack-reaction-intents.git
+pip install --upgrade git+https://github.com/Hermes-ds/hermes-addon-slack-reaction-intents.git
 systemctl restart hermes-ds-admin.service hermes-ds-default.service
 ```
 
@@ -90,12 +91,24 @@ export HERMES_AGENT_SRC=/path/to/hermes-agent
 pytest -q
 ```
 
-### Option B — run tests from inside a Hermes workspace/venv
+### Option B — run tests from a Hermes runtime/checkout on this server
 
 ```bash
+cd /srv/hermes/users/dsadmin/repos/hermes-addon-slack-reaction-intents
 source /opt/hermes-agent/venv-shared/bin/activate
 export HERMES_AGENT_SRC=/opt/hermes-agent
-pytest -q .hermes/scaffolds/hermes-addon-slack-reaction-intents/tests
+pytest -q tests
+```
+
+### Option C — isolated editable-install validation
+
+```bash
+cd /srv/hermes/users/dsadmin/repos/hermes-addon-slack-reaction-intents
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .[dev]
+export HERMES_AGENT_SRC=/opt/hermes-agent
+pytest -q tests
 ```
 
 ## Scope boundaries
